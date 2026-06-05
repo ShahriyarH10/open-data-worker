@@ -263,22 +263,23 @@ async function fetchNASA(q, limit) {
 }
 
 // ── Fetcher registry ──────────────────────────────────────────────────────────
+const fetchUK = (q,l) => ckan("https://data.gov.uk", q, l, "uk");
+const fetchCA = (q,l) => ckan("https://open.canada.ca/data", q, l, "ca");
+const fetchAU = (q,l) => ckan("https://data.gov.au/data", q, l, "au");
+const fetchNZ = (q,l) => ckan("https://catalogue.data.govt.nz", q, l, "nz");
+const fetchDE = (q,l) => ckan("https://www.govdata.de/ckan", q, l, "de");
+const fetchNL = (q,l) => ckan("https://data.overheid.nl", q, l, "nl");
+const fetchIT = (q,l) => ckan("https://www.dati.gov.it/opendata", q, l, "it");
+const fetchES = (q,l) => ckan("https://datos.gob.es", q, l, "es");
+const fetchMX = (q,l) => ckan("https://datos.gob.mx", q, l, "mx");
+const fetchAR = (q,l) => ckan("https://datos.gob.ar", q, l, "ar");
+const fetchZA = (q,l) => ckan("https://data.gov.za", q, l, "za");
+const fetchKE = (q,l) => ckan("https://www.opendata.go.ke", q, l, "ke");
+
 const FETCHERS = {
-  us: fetchUS,
-  uk: (q,l) => ckan("https://data.gov.uk", q, l, "uk"),
-  ca: (q,l) => ckan("https://open.canada.ca/data", q, l, "ca"),
-  au: (q,l) => ckan("https://data.gov.au/data", q, l, "au"),
-  nz: (q,l) => ckan("https://catalogue.data.govt.nz", q, l, "nz"),
-  eu: fetchEU,
-  de: (q,l) => ckan("https://www.govdata.de/ckan", q, l, "de"),
-  fr: fetchFR,
-  nl: (q,l) => ckan("https://data.overheid.nl", q, l, "nl"),
-  it: (q,l) => ckan("https://www.dati.gov.it/opendata", q, l, "it"),
-  es: (q,l) => ckan("https://datos.gob.es", q, l, "es"),
-  mx: (q,l) => ckan("https://datos.gob.mx", q, l, "mx"),
-  ar: (q,l) => ckan("https://datos.gob.ar", q, l, "ar"),
-  za: (q,l) => ckan("https://data.gov.za", q, l, "za"),
-  ke: (q,l) => ckan("https://www.opendata.go.ke", q, l, "ke"),
+  us: fetchUS, uk: fetchUK, ca: fetchCA, au: fetchAU, nz: fetchNZ,
+  eu: fetchEU, de: fetchDE, fr: fetchFR, nl: fetchNL, it: fetchIT, es: fetchES,
+  mx: fetchMX, ar: fetchAR, za: fetchZA, ke: fetchKE,
   wb: fetchWB, hf: fetchHF, zenodo: fetchZenodo,
   kaggle: fetchKaggle, harvard: fetchHarvard, who: fetchWHO,
   gbif: fetchGBIF, nasa: fetchNASA,
@@ -288,7 +289,6 @@ const WORLDWIDE = [
   fetchUK, fetchCA, fetchAU, fetchEU, fetchFR,
   fetchWB, fetchHF, fetchZenodo, fetchHarvard, fetchGBIF,
 ];
-
 // ── Router ────────────────────────────────────────────────────────────────────
 export default {
   async fetch(request) {
