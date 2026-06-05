@@ -1,0 +1,6 @@
+name = "open-data-worker"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+FRONTEND_URL = "https://open-data-frontend.pages.dev"
